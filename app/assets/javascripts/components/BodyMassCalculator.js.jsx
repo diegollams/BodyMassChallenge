@@ -105,7 +105,7 @@ var BodyMassCalculator = React.createClass({
                         <input type="radio" name="weight_unit" onChange={this.handleInputChange}  value={this.MILIGRAM} checked={this.state.weight_unit === this.MILIGRAM} /> Miligram
                     </label>
 
-                    <h4>Body mass</h4>
+                    <h4>Body Mass</h4>
                     <p>
                         Body Mass Index: <b>{body_mass_index.toFixed(2)}</b> Kg/m<sup>2</sup>
                         <br/>
