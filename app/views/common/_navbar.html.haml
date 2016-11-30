@@ -1,0 +1,18 @@
+%nav.navbar.navbar-default
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#"} Body Mass Calculator
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %p.navbar-text.navbar-right
+            = "Signed in as #{current_user.email} "
+        %li
+          %p.navbar-text.navbar-right
+            = link_to('Logout', destroy_user_session_path, :method => :delete)
