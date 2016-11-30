@@ -27,11 +27,10 @@ Rails.application.configure do
       domain:               'gmail.com',
       user_name:            ENV["GMAIL_USERNAME"],
       password:             ENV["GMAIL_PASSWORD"],
-      authentication:       :plain,
-      enable_starttls_auto: true
+      authentication:       :plain
   }
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
