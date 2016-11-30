@@ -61,7 +61,7 @@ var BodyMassCalculator = React.createClass({
             dataType: 'JSON',
             data: {body_mass_history: body_mass},
             success: function(data){
-                // window.location.href = '/body_mass_histories';
+                window.location.href = '/body_mass_histories';
             }.bind(this),
             error: function(XMLHttpRequest, textStatus, errorThrown){
                 alert("Error ocurr")
