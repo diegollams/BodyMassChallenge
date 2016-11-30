@@ -17,7 +17,7 @@ Rails.application.configure do
   Rails.application.routes.default_url_options[:host] = 'bodymassindex.herokuapp.com'
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 
 
@@ -30,7 +30,7 @@ Rails.application.configure do
       authentication:       :plain
   }
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
