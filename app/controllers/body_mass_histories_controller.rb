@@ -5,7 +5,7 @@ class BodyMassHistoriesController < ApplicationController
   # GET /body_mass_histories
   # GET /body_mass_histories.json
   def index
-    @body_mass_histories = BodyMassHistory.all.order(:created_at).page params[:page]
+    @body_mass_histories = current_user.body_mass_histories.all.order(:created_at).page params[:page]
   end
 
 
