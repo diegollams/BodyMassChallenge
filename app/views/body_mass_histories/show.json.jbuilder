@@ -1,0 +1,1 @@
+json.partial! "body_mass_histories/body_mass_history", body_mass_history: @body_mass_history

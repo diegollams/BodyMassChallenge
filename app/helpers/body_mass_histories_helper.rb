@@ -1,0 +1,2 @@
+module BodyMassHistoriesHelper
+end

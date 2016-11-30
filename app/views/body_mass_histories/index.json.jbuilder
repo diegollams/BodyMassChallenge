@@ -1,0 +1,1 @@
+json.array! @body_mass_histories, partial: 'body_mass_histories/body_mass_history', as: :body_mass_history

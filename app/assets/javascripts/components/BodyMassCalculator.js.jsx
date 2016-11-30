@@ -11,21 +11,27 @@ var BodyMassCalculator = React.createClass({
         inputvalue[event.target.name] = event.target.value;
         this.setState(inputvalue);
     },
+    convertToKg: function () {
+        if(this.state.weight_unit === this.KILOGRAM){
+            return this.state.weight;
+        }else if(this.state.weight_unit === this.MILIGRAM){
+            return this.state.weight / 1000;
+        }
+    },
+    convertToMeters: function () {
+        if(this.state.height_unit === this.METERS){
+            return this.state.height;
+        }else{
+            return this.state.height / 100;
+        }
+    },
     calculateBodyMassIndex: function () {
         var weightKg,heigthMts;
-        if(this.state.height === 0){
+        if(this.state.height === 0 || this.state.weight === null || this.state.height === null){
             return 0;
         }
-        if(this.state.weight_unit === this.KILOGRAM){
-            weightKg = this.state.weight;
-        }else if(this.state.weight_unit === this.MILIGRAM){
-            weightKg = this.state.weight / 1000;
-        }
-        if(this.state.height_unit === this.METERS){
-            heigthMts = this.state.height;
-        }else{
-            heigthMts = this.state.height / 100;
-        }
+        weightKg = this.convertToKg();
+        heigthMts = this.convertToMeters();
         return weightKg / (heigthMts * heigthMts);
     },
     getBOICategory: function (body_mass_index) {
@@ -47,12 +53,27 @@ var BodyMassCalculator = React.createClass({
             return "Obese Class III (Very severely obese";
         }
     },
+    submitBodyMass: function () {
+        var body_mass = {height:this.convertToMeters(), weight: this.convertToKg(), category: this.getBOICategory(), body_mass: this.calculateBodyMassIndex()};
+        $.ajax({
+            type: "POST",
+            url: '/body_mass_histories',
+            dataType: 'JSON',
+            data: {body_mass_history: body_mass},
+            success: function(data){
+                // window.location.href = '/body_mass_histories';
+            }.bind(this),
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert("Error ocurr")
+            }.bind(this)
+        });
+    },
     render: function(){
 
         var body_mass_index = this.calculateBodyMassIndex();
         var body_mass_category = this.getBOICategory(body_mass_index);
         return (<div>
-            <div className=" panel panel-primary">
+            <div className=" panel panel-default">
                 <div className="panel-heading">
                     <h4>Calculator</h4>
                 </div>
@@ -84,11 +105,14 @@ var BodyMassCalculator = React.createClass({
                         <input type="radio" name="weight_unit" onChange={this.handleInputChange}  value={this.MILIGRAM} checked={this.state.weight_unit === this.MILIGRAM} /> Miligram
                     </label>
 
-
                     <h4>Body mass</h4>
-                    Body Mass Index: {body_mass_index.toFixed(2)}
-                    <br/>
-                    Category: {body_mass_category}
+                    <p>
+                        Body Mass Index: <b>{body_mass_index.toFixed(2)}</b> Kg/m<sup>2</sup>
+                        <br/>
+                        Category: <b>{body_mass_category}</b>
+                    </p>
+
+                    <button onClick={this.submitBodyMass} className="btn btn-primary">Save</button>
                 </div>
             </div>
 
