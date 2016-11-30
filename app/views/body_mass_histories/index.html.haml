@@ -13,7 +13,7 @@
         %td
 
     %tbody
-      - @body_mass_histories.each do |body_mass_history|
+      - current_user.body_mass_histories.each do |body_mass_history|
         %tr
           %td
             %b= body_mass_history.created_at.strftime("%F")

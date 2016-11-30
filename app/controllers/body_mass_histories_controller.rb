@@ -13,7 +13,7 @@ class BodyMassHistoriesController < ApplicationController
   # POST /body_mass_histories.json
   def create
     @body_mass_history = BodyMassHistory.new(body_mass_history_params)
-
+    @body_mass_history.user  = current_user
     respond_to do |format|
       if @body_mass_history.save
         format.json { render :show, status: :created, location: @body_mass_history }
