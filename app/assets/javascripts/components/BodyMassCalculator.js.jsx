@@ -73,7 +73,7 @@ var BodyMassCalculator = React.createClass({
         var body_mass_index = this.calculateBodyMassIndex();
         var body_mass_category = this.getBOICategory(body_mass_index);
         return (<div>
-            <div className=" panel panel-default">
+            <div className=" panel panel-primary">
                 <div className="panel-heading">
                     <h4>Calculator</h4>
                 </div>
